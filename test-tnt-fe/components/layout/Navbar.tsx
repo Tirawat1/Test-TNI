@@ -42,7 +42,7 @@ export function Navbar() {
       >
         <ShoppingCart size={20} strokeWidth={2} />
         {totalCount > 0 && (
-          <span className="absolute top-0.5 right-0.5 flex size-[15px] items-center justify-center rounded-full bg-indigo-600 text-[10px] font-bold text-white">
+          <span className="absolute top-0.5 right-0.5 flex size-4 items-center justify-center rounded-full bg-indigo-600 text-[10px] font-bold text-white">
             {totalCount}
           </span>
         )}

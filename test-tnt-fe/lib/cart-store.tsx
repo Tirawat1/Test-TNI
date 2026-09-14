@@ -14,7 +14,6 @@ export interface CartItem {
 
 interface CartState {
   items: CartItem[];
-  // return false = คงเหลือไม่พอ ไม่ได้เพิ่ม/แก้จำนวนให้
   addItem: (item: Omit<CartItem, "quantity">) => boolean;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => boolean;
@@ -33,13 +32,16 @@ const useCartStore = create<CartState>()(
         set((state) => ({
           items: existing
             ? state.items.map((i) =>
-                i.id === item.id ? { ...i, stock: item.stock, quantity: nextQuantity } : i,
+                i.id === item.id
+                  ? { ...i, stock: item.stock, quantity: nextQuantity }
+                  : i,
               )
             : [...state.items, { ...item, quantity: 1 }],
         }));
         return true;
       },
-      removeItem: (id) => set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
+      removeItem: (id) =>
+        set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
       updateQuantity: (id, quantity) => {
         const item = get().items.find((i) => i.id === id);
         if (!item) return false;
@@ -71,5 +73,13 @@ export function useCart() {
   const totalCount = items.reduce((sum, i) => sum + i.quantity, 0);
   const totalPrice = items.reduce((sum, i) => sum + i.quantity * i.price, 0);
 
-  return { items, addItem, removeItem, updateQuantity, clear, totalCount, totalPrice };
+  return {
+    items,
+    addItem,
+    removeItem,
+    updateQuantity,
+    clear,
+    totalCount,
+    totalPrice,
+  };
 }

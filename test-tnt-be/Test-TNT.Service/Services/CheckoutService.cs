@@ -21,10 +21,13 @@ public class CheckoutService : ICheckoutService
         if (request.Items.Count == 0)
             return CheckoutResult.Fail("EMPTY_CART", "ตะกร้าสินค้าว่างเปล่า");
 
+        // find all product from request
         var productIds = request.Items.Select(i => i.ProductId).Distinct().ToList();
         var products = await _productRepo.GetByIds(productIds);
         var productMap = products.ToDictionary(p => p.Id);
 
+        // validate ดักไว้กรณีถ้ามี id ที่ไม่ตรงกับ product ใน db 
+        // validate กรณีสินค้า quantity เกิน
         foreach (var item in request.Items)
         {
             if (!productMap.TryGetValue(item.ProductId, out var product))
