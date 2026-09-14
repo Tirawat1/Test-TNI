@@ -1,0 +1,6 @@
+@Test_TNT.API_HostAddress = http://localhost:5144
+
+GET {{Test_TNT.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
