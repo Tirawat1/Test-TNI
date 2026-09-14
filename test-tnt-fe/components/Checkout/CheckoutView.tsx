@@ -81,7 +81,16 @@ export function CheckoutView({ cartTitle, cartEmptyLabel }: CheckoutViewProps) {
                   </button>
                   <span className="w-6 text-center">{item.quantity}</span>
                   <button
-                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    onClick={() => {
+                      const ok = updateQuantity(item.id, item.quantity + 1);
+                      if (!ok) {
+                        Swal.fire({
+                          icon: "warning",
+                          title: "สินค้าไม่พอ",
+                          text: "จำนวนสินค้าคงเหลือไม่พอ",
+                        });
+                      }
+                    }}
                     className="flex size-7 items-center justify-center rounded-full border hover:bg-black/5"
                     aria-label="เพิ่มจำนวน"
                   >

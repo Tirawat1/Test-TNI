@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Swal from "sweetalert2";
 import { Input } from "@/components/ui/input";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { useCart } from "@/lib/cart-store";
@@ -45,7 +46,16 @@ export function ProductBrowser({ products, searchPlaceholder, emptyLabel }: Prod
         emptyLabel={emptyLabel}
         onAddToCart={(id) => {
           const product = filtered.find((p) => p.id === id);
-          if (product) addItem(product);
+          if (!product) return;
+
+          const ok = addItem(product);
+          if (!ok) {
+            Swal.fire({
+              icon: "warning",
+              title: "สินค้าไม่พอ",
+              text: `สินค้า '${product.name}' คงเหลือไม่พอสำหรับเพิ่มอีก`,
+            });
+          }
         }}
       />
     </>

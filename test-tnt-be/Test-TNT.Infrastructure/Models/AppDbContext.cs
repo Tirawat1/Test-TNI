@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+﻿using Microsoft.EntityFrameworkCore;
 using Test_TNT.Domain.Models;
 
 namespace Test_TNT.Infrastructure.Models;
@@ -23,8 +20,6 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Product> Products { get; set; }
 
-    // คอลัมน์ DB เป็น "timestamp without time zone" แต่โค้ดใช้ DateTime.UtcNow (Kind=Utc) เสมอ
-    // แปลง Kind ทิ้งตอนเขียน (ค่ายังเป็น UTC) แล้วแปะกลับ Utc ตอนอ่าน กันชนกับ Npgsql ทุกคอลัมน์ DateTime ในทีเดียว
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
         configurationBuilder.Properties<DateTime>().HaveConversion<UtcDateTimeConverter>();
