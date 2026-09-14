@@ -20,7 +20,7 @@ export function Navbar() {
   return (
     <header className="flex h-16 items-center gap-4 border-b px-6">
       <Link href={`/${lang}/product`} className="mr-auto text-lg font-bold">
-        Test-TNT
+        Test-TNI
       </Link>
 
       <nav className="flex items-center gap-2 text-sm">

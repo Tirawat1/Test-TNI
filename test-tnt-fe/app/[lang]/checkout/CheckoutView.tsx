@@ -66,6 +66,7 @@ export function CheckoutView({ cartTitle, cartEmptyLabel }: CheckoutViewProps) {
             >
               <div>
                 <p className="font-medium">{item.name}</p>
+                <p className="text-xs text-gray-400">{item.code}</p>
                 <p className="text-sm text-gray-500">฿{item.price}</p>
               </div>
 

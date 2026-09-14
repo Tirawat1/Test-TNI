@@ -13,11 +13,6 @@ export interface Product {
   costPerItem: number;
 }
 
-export async function getProducts(): Promise<Product[]> {
-  const res = await api.get<Product[]>("/api/products");
-  return res.data;
-}
-
 export interface CheckoutRequestItem {
   productId: number;
   quantity: number;
@@ -33,8 +28,14 @@ export interface CheckoutErrorResponse {
   code: string;
   message: string;
 }
+export async function getProducts(): Promise<Product[]> {
+  const res = await api.get<Product[]>("/api/products");
+  return res.data;
+}
 
-export async function checkout(items: CheckoutRequestItem[]): Promise<CheckoutResponse> {
+export async function checkout(
+  items: CheckoutRequestItem[],
+): Promise<CheckoutResponse> {
   const res = await api.post<CheckoutResponse>("/api/checkout", { items });
   return res.data;
 }

@@ -4,10 +4,14 @@ import { getProducts } from "@/lib/api";
 
 export default async function Page({ params }: PageProps<"/[lang]/product">) {
   const { lang } = await params;
-  const [dict, products] = await Promise.all([getDictionary(lang), getProducts()]);
+  const [dict, products] = await Promise.all([
+    getDictionary(lang),
+    getProducts(),
+  ]);
 
   const gridProducts = products.map((p) => ({
     id: String(p.id),
+    code: p.code ?? "",
     name: (lang === "en" ? p.productNameEn : p.productNameTh) ?? p.code ?? "",
     price: p.costPerItem,
     stock: p.stock,
