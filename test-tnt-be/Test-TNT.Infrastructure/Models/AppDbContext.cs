@@ -39,6 +39,10 @@ public partial class AppDbContext : DbContext
             entity.ToTable("Order");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.TotalCost)
+                .HasDefaultValue(0)
+                .HasComment("ราคารวม ณ ตอนสั่งซื้อ")
+                .HasColumnName("total_cost");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("now()")
                 .HasColumnType("timestamp without time zone")

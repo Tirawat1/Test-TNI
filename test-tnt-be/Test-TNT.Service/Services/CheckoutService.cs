@@ -52,13 +52,14 @@ public class CheckoutService : ICheckoutService
             });
         }
 
+        order.TotalCost = order.OrderItems.Sum(oi => oi.Quantity * oi.CostPerItem);
+
         var saved = await _orderRepo.Add(order);
-        var totalCost = saved.OrderItems.Sum(oi => oi.Quantity * oi.CostPerItem);
 
         return CheckoutResult.Ok(new CheckoutResponseDto
         {
             OrderId = saved.Id,
-            TotalCost = totalCost,
+            TotalCost = saved.TotalCost,
             CreatedAt = saved.CreatedAt,
         });
     }

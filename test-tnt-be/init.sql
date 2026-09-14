@@ -13,8 +13,10 @@ comment on column "Product"."cost_per_item" is 'ราคาสินค้า�
 
 create table "Order" (
   "id" serial primary key,
+  "total_cost" INT not null default 0,
   "created_at" timestamp not null default NOW()
 );
+comment on column "Order"."total_cost" is 'ราคารวม ณ ตอนสั่งซื้อ';
 
 create table "Order_item" (
   "id" serial primary key,
