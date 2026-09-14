@@ -1,0 +1,12 @@
+{
+  "product": {
+    "searchPlaceholder": "Search products...",
+    "emptyLabel": "No products",
+    "addToCart": "Add to Cart",
+    "outOfStock": "Out of Stock"
+  },
+  "cart" : {
+    "cart" : "Cart",
+    "cart_empty" : "cart empty"
+  }
+}

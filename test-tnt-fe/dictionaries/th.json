@@ -1,0 +1,12 @@
+{
+  "product": {
+    "searchPlaceholder": "ค้นหาสินค้า...",
+    "emptyLabel": "ไม่มีสินค้า",
+    "addToCart": "หยิบใส่ตะกร้า",
+    "outOfStock": "สินค้าหมด"
+  },
+  "cart" : {
+    "cart" : "ตะกร้าสินค้า",
+    "cart_empty" : "ไม่พบสินค้าในตะกร้า"
+  }
+}
